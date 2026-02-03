@@ -1080,10 +1080,11 @@ Public Class ReinforcementBarAutomation
                     Dim baseY_U = topY - offsetUL
                     If endX_UL - startX_UL > EPS Then
                         Dim plU As New Polyline()
-                        plU.AddVertexAt(0, New Point2d(startX_UL, baseY_U - miterLen), 0, 0, 0)
+                        ' Miters at 45° to bottom-left (225°)
+                        plU.AddVertexAt(0, New Point2d(startX_UL - miterLen, baseY_U - miterLen), 0, 0, 0)
                         plU.AddVertexAt(1, New Point2d(startX_UL, baseY_U), 0, 0, 0)
                         plU.AddVertexAt(2, New Point2d(endX_UL, baseY_U), 0, 0, 0)
-                        plU.AddVertexAt(3, New Point2d(endX_UL, baseY_U - miterLen), 0, 0, 0)
+                        plU.AddVertexAt(3, New Point2d(endX_UL - miterLen, baseY_U - miterLen), 0, 0, 0)
                         plU.ColorIndex = 256
                         AppendOnLayer(btr, tr, plU, LYR_REBAR1, forceByLayer:=True)
 
@@ -1095,10 +1096,11 @@ Public Class ReinforcementBarAutomation
                     Dim baseY_L = bottomY + offsetLower
                     If endX_UL - startX_UL > EPS Then
                         Dim plL As New Polyline()
-                        plL.AddVertexAt(0, New Point2d(startX_UL, baseY_L + miterLen), 0, 0, 0)
+                        ' Miters at 45° to top-left (135°) - symmetric with upper
+                        plL.AddVertexAt(0, New Point2d(startX_UL - miterLen, baseY_L + miterLen), 0, 0, 0)
                         plL.AddVertexAt(1, New Point2d(startX_UL, baseY_L), 0, 0, 0)
                         plL.AddVertexAt(2, New Point2d(endX_UL, baseY_L), 0, 0, 0)
-                        plL.AddVertexAt(3, New Point2d(endX_UL, baseY_L + miterLen), 0, 0, 0)
+                        plL.AddVertexAt(3, New Point2d(endX_UL - miterLen, baseY_L + miterLen), 0, 0, 0)
                         plL.ColorIndex = 256
                         AppendOnLayer(btr, tr, plL, LYR_REBAR1, forceByLayer:=True)
 
@@ -1129,7 +1131,8 @@ Public Class ReinforcementBarAutomation
                         Dim midX As Double = 0.5 * (startX_UL + endX_UL)
 
                         Dim plLeft As New Polyline()
-                        plLeft.AddVertexAt(0, New Point2d(startX_UL, addlY - miterLen), 0, 0, 0)
+                        ' Miter at 45° to bottom-left (225°)
+                        plLeft.AddVertexAt(0, New Point2d(startX_UL - miterLen, addlY - miterLen), 0, 0, 0)
                         plLeft.AddVertexAt(1, New Point2d(startX_UL, addlY), 0, 0, 0)
                         plLeft.AddVertexAt(2, New Point2d(midX, addlY), 0, 0, 0)
                         plLeft.ColorIndex = 256
@@ -1138,7 +1141,8 @@ Public Class ReinforcementBarAutomation
                         Dim plRight As New Polyline()
                         plRight.AddVertexAt(0, New Point2d(midX, addlY), 0, 0, 0)
                         plRight.AddVertexAt(1, New Point2d(endX_UL, addlY), 0, 0, 0)
-                        plRight.AddVertexAt(2, New Point2d(endX_UL, addlY - miterLen), 0, 0, 0)
+                        ' Miter at 45° to bottom-left (225°)
+                        plRight.AddVertexAt(2, New Point2d(endX_UL - miterLen, addlY - miterLen), 0, 0, 0)
                         plRight.ColorIndex = 256
                         AppendOnLayer(btr, tr, plRight, LYR_REBAR1, forceByLayer:=True)
 
@@ -1196,10 +1200,11 @@ Public Class ReinforcementBarAutomation
                     ' Upper (duplicate)
                     If endX_UL - startX_UL > EPS Then
                         Dim plU2 As New Polyline()
-                        plU2.AddVertexAt(0, New Point2d(startX_UL, dupUpperY - miterLen), 0, 0, 0)
+                        ' Miters at 45° to bottom-left (225°)
+                        plU2.AddVertexAt(0, New Point2d(startX_UL - miterLen, dupUpperY - miterLen), 0, 0, 0)
                         plU2.AddVertexAt(1, New Point2d(startX_UL, dupUpperY), 0, 0, 0)
                         plU2.AddVertexAt(2, New Point2d(endX_UL, dupUpperY), 0, 0, 0)
-                        plU2.AddVertexAt(3, New Point2d(endX_UL, dupUpperY - miterLen), 0, 0, 0)
+                        plU2.AddVertexAt(3, New Point2d(endX_UL - miterLen, dupUpperY - miterLen), 0, 0, 0)
                         plU2.ColorIndex = 256
                         AppendOnLayer(btr, tr, plU2, LYR_REBAR2, forceByLayer:=True)
                         Dim span = endX_UL - startX_UL
@@ -1209,10 +1214,11 @@ Public Class ReinforcementBarAutomation
                     ' Additional (duplicate)
                     If endX_UL - startX_UL > EPS Then
                         Dim plA2 As New Polyline()
-                        plA2.AddVertexAt(0, New Point2d(startX_UL, dupAddlY - miterLen), 0, 0, 0)
+                        ' Miters at 45° to bottom-left (225°)
+                        plA2.AddVertexAt(0, New Point2d(startX_UL - miterLen, dupAddlY - miterLen), 0, 0, 0)
                         plA2.AddVertexAt(1, New Point2d(startX_UL, dupAddlY), 0, 0, 0)
                         plA2.AddVertexAt(2, New Point2d(endX_UL, dupAddlY), 0, 0, 0)
-                        plA2.AddVertexAt(3, New Point2d(endX_UL, dupAddlY - miterLen), 0, 0, 0)
+                        plA2.AddVertexAt(3, New Point2d(endX_UL - miterLen, dupAddlY - miterLen), 0, 0, 0)
                         plA2.ColorIndex = 256
                         AppendOnLayer(btr, tr, plA2, LYR_REBAR2, forceByLayer:=True)
                     End If
@@ -1249,10 +1255,11 @@ Public Class ReinforcementBarAutomation
                     ' Lower (duplicate)
                     If endX_UL - startX_UL > EPS Then
                         Dim plL2 As New Polyline()
-                        plL2.AddVertexAt(0, New Point2d(startX_UL, dupLowerY + miterLen), 0, 0, 0)
+                        ' Miters at 45° to top-left (135°) - symmetric with upper
+                        plL2.AddVertexAt(0, New Point2d(startX_UL - miterLen, dupLowerY + miterLen), 0, 0, 0)
                         plL2.AddVertexAt(1, New Point2d(startX_UL, dupLowerY), 0, 0, 0)
                         plL2.AddVertexAt(2, New Point2d(endX_UL, dupLowerY), 0, 0, 0)
-                        plL2.AddVertexAt(3, New Point2d(endX_UL, dupLowerY + miterLen), 0, 0, 0)
+                        plL2.AddVertexAt(3, New Point2d(endX_UL - miterLen, dupLowerY + miterLen), 0, 0, 0)
                         plL2.ColorIndex = 256
                         AppendOnLayer(btr, tr, plL2, LYR_REBAR2, forceByLayer:=True)
                         DrawDimIf(btr, tr, True, endX_UL - extPhiLower, endX_UL, dupLowerY, FormatLen(extPhiLower), 3, placeAbove:=False)
@@ -1333,10 +1340,11 @@ Public Class ReinforcementBarAutomation
                         Dim eU As Double = Math.Max(asmRight, uMax) - offsetUL
                         If eU - sU > EPS Then
                             Dim pl As New Polyline()
-                            pl.AddVertexAt(0, New Point2d(sU, baseY_Upper - miterLen), 0, 0, 0)
+                            ' Miters at 45° to bottom-left (225°)
+                            pl.AddVertexAt(0, New Point2d(sU - miterLen, baseY_Upper - miterLen), 0, 0, 0)
                             pl.AddVertexAt(1, New Point2d(sU, baseY_Upper), 0, 0, 0)
                             pl.AddVertexAt(2, New Point2d(eU, baseY_Upper), 0, 0, 0)
-                            pl.AddVertexAt(3, New Point2d(eU, baseY_Upper - miterLen), 0, 0, 0)
+                            pl.AddVertexAt(3, New Point2d(eU - miterLen, baseY_Upper - miterLen), 0, 0, 0)
                             pl.ColorIndex = 256
                             AppendOnLayer(btr, tr, pl, LYR_REBAR1, forceByLayer:=True)
                             DrawPhiNote(btr, tr, 0.5R * (sU + eU), baseY_Upper, QtyPhiText(info.QtyMontaj, info.PhiMontaj), colTxt)
@@ -1368,7 +1376,8 @@ Public Class ReinforcementBarAutomation
                             If j = 0 Then
                                 newStart = x0 : newEnd = Math.Min(x1, x0 + roundedLen)
                                 Dim pl As New Polyline()
-                                pl.AddVertexAt(0, New Point2d(newStart, baseY_Upper - miterLen), 0, 0, 0)
+                                ' Miter at 45° to bottom-left (225°)
+                                pl.AddVertexAt(0, New Point2d(newStart - miterLen, baseY_Upper - miterLen), 0, 0, 0)
                                 pl.AddVertexAt(1, New Point2d(newStart, baseY_Upper), 0, 0, 0)
                                 pl.AddVertexAt(2, New Point2d(newEnd, baseY_Upper), 0, 0, 0)
                                 pl.ColorIndex = 256
@@ -1378,7 +1387,8 @@ Public Class ReinforcementBarAutomation
                                 Dim pl As New Polyline()
                                 pl.AddVertexAt(0, New Point2d(newStart, yCoord), 0, 0, 0)
                                 pl.AddVertexAt(1, New Point2d(newEnd, yCoord), 0, 0, 0)
-                                pl.AddVertexAt(2, New Point2d(newEnd, yCoord - miterLen), 0, 0, 0)
+                                ' Miter at 45° to bottom-left (225°)
+                                pl.AddVertexAt(2, New Point2d(newEnd - miterLen, yCoord - miterLen), 0, 0, 0)
                                 pl.ColorIndex = 256
                                 AppendOnLayer(btr, tr, pl, LYR_REBAR1, forceByLayer:=True)
                             Else
@@ -1455,10 +1465,11 @@ Public Class ReinforcementBarAutomation
                         Dim eL As Double = Math.Max(asmRight, uMax) - offsetLower
                         If eL - sL > EPS Then
                             Dim pl As New Polyline()
-                            pl.AddVertexAt(0, New Point2d(sL, baseY_Lower + miterLen), 0, 0, 0)
+                            ' Miters at 45° to top-left (135°) - symmetric with upper
+                            pl.AddVertexAt(0, New Point2d(sL - miterLen, baseY_Lower + miterLen), 0, 0, 0)
                             pl.AddVertexAt(1, New Point2d(sL, baseY_Lower), 0, 0, 0)
                             pl.AddVertexAt(2, New Point2d(eL, baseY_Lower), 0, 0, 0)
-                            pl.AddVertexAt(3, New Point2d(eL, baseY_Lower + miterLen), 0, 0, 0)
+                            pl.AddVertexAt(3, New Point2d(eL - miterLen, baseY_Lower + miterLen), 0, 0, 0)
                             pl.ColorIndex = 256
                             AppendOnLayer(btr, tr, pl, LYR_REBAR1, forceByLayer:=True)
 
@@ -1496,7 +1507,8 @@ Public Class ReinforcementBarAutomation
 
                             If iSpace = 0 Then
                                 Dim pl As New Polyline()
-                                pl.AddVertexAt(0, New Point2d(x0L, baseY_Lower + miterLen), 0, 0, 0)
+                                ' Miter at 45° to top-left (135°)
+                                pl.AddVertexAt(0, New Point2d(x0L - miterLen, baseY_Lower + miterLen), 0, 0, 0)
                                 pl.AddVertexAt(1, New Point2d(x0L, baseY_Lower), 0, 0, 0)
                                 pl.AddVertexAt(2, New Point2d(x1L, baseY_Lower), 0, 0, 0)
                                 pl.ColorIndex = 256
@@ -1505,7 +1517,8 @@ Public Class ReinforcementBarAutomation
                                 Dim pl As New Polyline()
                                 pl.AddVertexAt(0, New Point2d(x0L, baseY_Lower), 0, 0, 0)
                                 pl.AddVertexAt(1, New Point2d(x1L, baseY_Lower), 0, 0, 0)
-                                pl.AddVertexAt(2, New Point2d(x1L, baseY_Lower + miterLen), 0, 0, 0)
+                                ' Miter at 45° to top-left (135°)
+                                pl.AddVertexAt(2, New Point2d(x1L - miterLen, baseY_Lower + miterLen), 0, 0, 0)
                                 pl.ColorIndex = 256
                                 AppendOnLayer(btr, tr, pl, LYR_REBAR1, forceByLayer:=True)
                             Else
@@ -1561,10 +1574,11 @@ Public Class ReinforcementBarAutomation
                         Dim eA As Double = Math.Max(asmRight, uMax) - offsetUL
                         If eA - sA > EPS Then
                             Dim pl As New Polyline()
-                            pl.AddVertexAt(0, New Point2d(sA, addlY - miterLen), 0, 0, 0)
+                            ' Miters at 45° to bottom-left (225°)
+                            pl.AddVertexAt(0, New Point2d(sA - miterLen, addlY - miterLen), 0, 0, 0)
                             pl.AddVertexAt(1, New Point2d(sA, addlY), 0, 0, 0)
                             pl.AddVertexAt(2, New Point2d(eA, addlY), 0, 0, 0)
-                            pl.AddVertexAt(3, New Point2d(eA, addlY - miterLen), 0, 0, 0)
+                            pl.AddVertexAt(3, New Point2d(eA - miterLen, addlY - miterLen), 0, 0, 0)
                             pl.ColorIndex = 256
                             AppendOnLayer(btr, tr, pl, LYR_REBAR1, forceByLayer:=True)
                             drawnPieces.Add(Tuple.Create(sA, eA))
@@ -1605,7 +1619,8 @@ Public Class ReinforcementBarAutomation
 
                             If i = c0 Then
                                 Dim pl As New Polyline()
-                                pl.AddVertexAt(0, New Point2d(s, addlY - miterLen), 0, 0, 0)
+                                ' Miter at 45° to bottom-left (225°)
+                                pl.AddVertexAt(0, New Point2d(s - miterLen, addlY - miterLen), 0, 0, 0)
                                 pl.AddVertexAt(1, New Point2d(s, addlY), 0, 0, 0)
                                 pl.AddVertexAt(2, New Point2d(e, addlY), 0, 0, 0)
                                 pl.ColorIndex = 256
@@ -1614,7 +1629,8 @@ Public Class ReinforcementBarAutomation
                                 Dim pl As New Polyline()
                                 pl.AddVertexAt(0, New Point2d(s, addlY), 0, 0, 0)
                                 pl.AddVertexAt(1, New Point2d(e, addlY), 0, 0, 0)
-                                pl.AddVertexAt(2, New Point2d(e, addlY - miterLen), 0, 0, 0)
+                                ' Miter at 45° to bottom-left (225°)
+                                pl.AddVertexAt(2, New Point2d(e - miterLen, addlY - miterLen), 0, 0, 0)
                                 pl.ColorIndex = 256
                                 AppendOnLayer(btr, tr, pl, LYR_REBAR1, forceByLayer:=True)
                             Else
@@ -1888,7 +1904,8 @@ Public Class ReinforcementBarAutomation
                         If j = 0 Then
                             ' LEFT end (LEFT miter)
                             Dim pl As New Polyline()
-                            pl.AddVertexAt(0, New Point2d(newStart, dupUpperY - miterLen), 0, 0, 0) ' seg 0: vertical (left miter)
+                            ' Miter at 45° to bottom-left (225°)
+                            pl.AddVertexAt(0, New Point2d(newStart - miterLen, dupUpperY - miterLen), 0, 0, 0) ' seg 0: 45° (left miter)
                             pl.AddVertexAt(1, New Point2d(newStart, dupUpperY), 0, 0, 0)
                             pl.AddVertexAt(2, New Point2d(newEnd, dupUpperY), 0, 0, 0)            ' seg 1: horizontal
                             pl.ColorIndex = 256
@@ -1903,7 +1920,8 @@ Public Class ReinforcementBarAutomation
                             Dim pl As New Polyline()
                             pl.AddVertexAt(0, New Point2d(newStart, yDup), 0, 0, 0)                 ' seg 0: horizontal
                             pl.AddVertexAt(1, New Point2d(newEnd, yDup), 0, 0, 0)
-                            pl.AddVertexAt(2, New Point2d(newEnd, yDup - miterLen), 0, 0, 0)      ' seg 1: vertical (right miter)
+                            ' Miter at 45° to bottom-left (225°)
+                            pl.AddVertexAt(2, New Point2d(newEnd - miterLen, yDup - miterLen), 0, 0, 0)      ' seg 1: 45° (right miter)
                             pl.ColorIndex = 256
                             AppendOnLayer(btr, tr, pl, LYR_REBAR2, forceByLayer:=True)
                             dupUpperId = pl.ObjectId
@@ -2110,7 +2128,8 @@ Public Class ReinforcementBarAutomation
                             If iSpace = 0 Then
                                 ' Leftmost span
                                 Dim pl As New Polyline()
-                                pl.AddVertexAt(0, New Point2d(x0L, yDupL + miterLen), 0, 0, 0)
+                                ' Miter at 45° to top-left (135°)
+                                pl.AddVertexAt(0, New Point2d(x0L - miterLen, yDupL + miterLen), 0, 0, 0)
                                 pl.AddVertexAt(1, New Point2d(x0L, yDupL), 0, 0, 0)
                                 pl.AddVertexAt(2, New Point2d(x1L, yDupL), 0, 0, 0)
                                 pl.ColorIndex = 256
@@ -2124,7 +2143,8 @@ Public Class ReinforcementBarAutomation
                                 Dim pl As New Polyline()
                                 pl.AddVertexAt(0, New Point2d(x0L, yDupL), 0, 0, 0)
                                 pl.AddVertexAt(1, New Point2d(x1L, yDupL), 0, 0, 0)
-                                pl.AddVertexAt(2, New Point2d(x1L, yDupL + miterLen), 0, 0, 0)
+                                ' Miter at 45° to top-left (135°)
+                                pl.AddVertexAt(2, New Point2d(x1L - miterLen, yDupL + miterLen), 0, 0, 0)
                                 pl.ColorIndex = 256
                                 AppendOnLayer(btr, tr, pl, LYR_REBAR2, forceByLayer:=True)
                                 dupLowerId = pl.ObjectId
@@ -2295,7 +2315,8 @@ Public Class ReinforcementBarAutomation
                         If i = c0 Then
                             ' Leftmost: LEFT miter (down)
                             Dim pl As New Polyline()
-                            pl.AddVertexAt(0, New Point2d(s, addlYdup - miterLen), 0, 0, 0)
+                            ' Miter at 45° to bottom-left (225°)
+                            pl.AddVertexAt(0, New Point2d(s - miterLen, addlYdup - miterLen), 0, 0, 0)
                             pl.AddVertexAt(1, New Point2d(s, addlYdup), 0, 0, 0)
                             pl.AddVertexAt(2, New Point2d(e, addlYdup), 0, 0, 0)
                             pl.ColorIndex = 256
@@ -2308,7 +2329,8 @@ Public Class ReinforcementBarAutomation
                             Dim pl As New Polyline()
                             pl.AddVertexAt(0, New Point2d(s, addlYdup), 0, 0, 0)
                             pl.AddVertexAt(1, New Point2d(e, addlYdup), 0, 0, 0)
-                            pl.AddVertexAt(2, New Point2d(e, addlYdup - miterLen), 0, 0, 0)
+                            ' Miter at 45° to bottom-left (225°)
+                            pl.AddVertexAt(2, New Point2d(e - miterLen, addlYdup - miterLen), 0, 0, 0)
                             pl.ColorIndex = 256
                             AppendOnLayer(btr, tr, pl, LYR_REBAR2, forceByLayer:=True)
                             dupAddlId = pl.ObjectId
