@@ -153,7 +153,19 @@ Public Class MetrajGenerator
                                     Dim cln = System.Text.RegularExpressions.Regex.Replace(att.TextString, "[^0-9]", "")
                                     Integer.TryParse(cln, entry.Diameter)
                                 Case "ADET"
-                                    Integer.TryParse(att.TextString, entry.Count)
+                                    ' Handle "nxm" format (e.g., "3x2" -> 6) or plain integer
+                                    Dim adetText As String = att.TextString
+                                    If adetText.Contains("x") Then
+                                        Dim parts = adetText.Split("x"c)
+                                        If parts.Length = 2 Then
+                                            Dim n As Integer = 0, m As Integer = 0
+                                            If Integer.TryParse(parts(0).Trim(), n) AndAlso Integer.TryParse(parts(1).Trim(), m) Then
+                                                entry.Count = n * m
+                                            End If
+                                        End If
+                                    Else
+                                        Integer.TryParse(adetText, entry.Count)
+                                    End If
                                 Case "CARPAN"
                                     Integer.TryParse(att.TextString, entry.Multiplier)
                                 Case "BOY"
